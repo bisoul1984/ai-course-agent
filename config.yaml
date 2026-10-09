@@ -1,0 +1,138 @@
+# ============================================================
+#  AI Course Application Agents - configuration
+#  You don't have to fill everything: the Profile agent reads your CV
+#  (documents/cv.pdf) and asks you on Telegram for anything missing.
+#  The agents only ever use facts from this file, your CV and your answers.
+# ============================================================
+
+model: gemini-2.5-flash           # free Gemini model (agent falls back to others if unavailable)
+api_key_env: GEMINI_API_KEY        # name of the environment variable holding your key
+min_seconds_between_calls: 7      # stay under the free-tier requests-per-minute limit
+auto_submit: true                 # true = agent clicks Submit by itself
+                                  # false = agent fills the form, then waits for you to press Enter
+headless: false                   # false = you can watch the browser while it works
+min_fit_score: 65                 # only apply to opportunities scoring at least this (0-100)
+max_applications_per_run: 3       # safety limit per cycle
+max_applications_per_day: 5       # safety limit per day
+max_attempts_per_course: 3        # give up on a course after this many tries
+scout_every_hours: 24             # how often the Scout agent searches again
+loop_sleep_seconds: 60            # pause between cycles in autonomous mode
+
+jobs:
+  enabled: true
+  scopes: [remote, visa, ethiopia]   # remote jobs open to Ethiopia, visa-sponsored jobs, jobs in Ethiopia
+  require_approval: true          # true = you reply YES on Telegram before each job application
+  min_fit_score: 70               # only propose jobs scoring at least this
+  proposals_per_day: 5            # max new job matches (with cover letters) sent to you per day
+  max_applications_per_day: 5
+  scout_every_hours: 12
+  max_age_days: 30                # ignore postings older than this
+  remote_terms: ["machine learning", "AI engineer", "LLM", "MLOps", "NLP"]
+  visa_queries:
+    - "machine learning engineer visa sponsorship job Europe 2026"
+    - "AI engineer job relocation visa sponsorship"
+  ethiopia_queries:
+    - "machine learning engineer job Addis Ababa"
+    - "AI engineer vacancy Ethiopia"
+    - "data scientist job Addis Ababa 2026"
+
+telegram:
+  bot_token_env: TELEGRAM_BOT_TOKEN   # environment variable names (leave as is)
+  chat_id_env: TELEGRAM_CHAT_ID
+
+search:
+  pages_per_query: 5              # how many search results to read per query
+
+  # Course pages checked directly on every run (add or remove freely)
+  seed_urls:
+    - "https://www.eeml.eu"
+    - "https://www.m2lschool.org"
+    - "http://lxmls.it.pt"
+    - "https://athnlp.github.io"
+    - "https://www.oxfordml.school"
+    - "https://ellis.eng.cam.ac.uk/summer-school/"
+    - "https://scads.ai/event/summer-schools/"
+    - "https://ellis.eu/event-calendar"
+    - "https://mlss.cc"
+    - "https://deeplearningindaba.com"
+
+  # Free web searches run on every run
+  queries:
+    - "AI machine learning summer school 2027 Europe application scholarship"
+    - "deep learning summer school 2027 Europe travel grant apply"
+    - "NLP large language models summer school 2027 Europe"
+    - "AI agents LLM engineering summer school 2027"
+    - "AI winter school 2027 Europe applications open"
+    - "machine learning workshop Europe 2027 open to African participants"
+    - "AI summer school Germany 2027"
+    - "DAAD short course artificial intelligence 2027"
+    - "ScaDS.AI summer school 2027"
+    - "IWR School 2027 Heidelberg AI"
+    - "ELLIS summer school 2027"
+    - "MLSS 2027 machine learning summer school"
+    - "AI summer school UK 2027 bursary"
+    - "EEML 2027 summer school"
+    - "Mediterranean Machine Learning M2L 2027"
+    - "LxMLS 2027 Lisbon Machine Learning School"
+    - "AthNLP 2027 Athens NLP summer school"
+
+profile:
+  full_name: ""                   # as in your passport
+  email: ""
+  phone: ""                       # with country code, e.g. +251...
+  date_of_birth: ""               # YYYY-MM-DD
+  gender: ""                      # leave empty to have the agent skip optional gender questions
+  nationality: "Ethiopian"
+  country_of_residence: "Ethiopia"
+  city: ""
+  passport_country: "Ethiopia"
+
+  current_role: "Full stack developer"
+  employer: "Ethiocube Systems"
+  years_of_experience: ""         # e.g. "4"
+  career_level: "Working professional / industry practitioner"
+
+  education:                      # list each degree
+    - degree: ""                  # e.g. "BSc Computer Science"
+      institution: ""
+      year_completed: ""
+
+  links:
+    github: ""
+    linkedin: ""
+    portfolio: ""
+
+  cv_path: "./documents/cv.pdf"   # put your CV here (PDF)
+
+  needs_financial_support: true
+  financial_need_statement: >
+    I am based in Ethiopia, where international travel and course fees are very
+    expensive relative to local salaries. Financial support for registration,
+    travel or accommodation would make my participation possible.
+
+  skills:
+    - "Full stack web development (frontend, backend, databases)"
+    - "Python"
+    - "Building AI agents with large language model APIs"
+    - "Trading automation with Python and MetaTrader 5"
+
+  projects:
+    - name: "ሥራ AI"
+      description: >
+        AI-powered recruiting dashboard for the Ethiopian labour market. Supports
+        bilingual Amharic/English communication and is adapted to Ethiopian labour
+        law and local job platforms.
+    - name: "Automated forex trading system"
+      description: >
+        Multi-engine automated trading system in Python connected to MetaTrader 5,
+        plus machine-learning research on trading strategies.
+    # add more projects here
+
+  learning_goals: >
+    Gain structured training in AI engineering: building reliable LLM applications
+    and AI agents, evaluation, deployment, and responsible AI in low-resource
+    settings, including adapting AI to local languages such as Amharic.
+
+  extra_facts: >
+    # Anything else that is true and useful for applications
+    # (publications, awards, languages spoken, volunteering, etc.)

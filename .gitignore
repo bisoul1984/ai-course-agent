@@ -1,0 +1,12 @@
+# secrets and personal data — never commit
+.env
+data/
+logs/
+documents/
+browser_profile/
+courses.csv
+jobs.csv
+# python
+venv/
+__pycache__/
+*.pyc
